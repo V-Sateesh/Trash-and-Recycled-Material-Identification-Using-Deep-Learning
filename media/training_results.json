@@ -1,0 +1,35 @@
+{
+    "train_loss": [
+        0.8593295216560364
+    ],
+    "val_loss": [
+        0.32429006695747375
+    ],
+    "train_accuracy": [
+        0.7732787132263184
+    ],
+    "val_accuracy": [
+        0.9324975609779358
+    ],
+    "test_accuracy": 0.9324975609779358,
+    "test_loss": 0.3242899775505066,
+    "num_classes": 13,
+    "class_names": [
+        "battery",
+        "biological",
+        "brown-glass",
+        "cardboard",
+        "clothes",
+        "green-glass",
+        "metal",
+        "paper",
+        "plastic",
+        "shoes",
+        "test_data",
+        "trash",
+        "white-glass"
+    ],
+    "label_distribution_path": "D:\\major final\\32.Trash and Recycle Matierial identification using DeepLearning\\code\\media\\label_distribution.png",
+    "sample_images_path": "D:\\major final\\32.Trash and Recycle Matierial identification using DeepLearning\\code\\media\\sample_images.png",
+    "training_performance_path": "D:\\major final\\32.Trash and Recycle Matierial identification using DeepLearning\\code\\media\\training_performance.png"
+}

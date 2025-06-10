@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage Classification</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Fixed navbar color */
+        .navbar {
+            background-color: #333 !important;
+        }
+
+        .navbar a {
+            color: white !important;
+        }
+
+        .navbar-nav > li > a:hover {
+            background-color: #444 !important;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container-box {
+            max-width: 700px;
+            margin: 100px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .result {
+            margin-top: 30px;
+        }
+
+        .result img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .btn-upload {
+            margin-top: 20px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-upload:hover {
+            background-color: #0056b3;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-nav li {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Garbage Classification</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{% url 'UserHome' %}">Home</a></li>
+                    <li><a href="{% url 'training' %}">Training</a></li>
+                    <li><a href="{% url 'predict_Garbage' %}">Predict Garbage</a></li>
+                    <li><a href="{% url 'index' %}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-box">
+        <h1>Upload an Image for Garbage Classification</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file" accept="image/*" required class="form-control">
+            <button type="submit" class="btn-upload">Upload</button>
+        </form>
+
+        {% if path %}
+        <div class="result">
+            <h2>Uploaded Image:</h2>
+            <img src="{{ path }}" alt="Uploaded Image" class="img-responsive">
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result">
+            <h2>Prediction Result:</h2>
+            <p class="alert alert-info">{{ result }}</p>
+        </div>
+        {% endif %}
+
+        {% if prediction_image_url %}
+        <div class="result">
+            <h2>Prediction Image:</h2>
+            <img src="{{ prediction_image_url }}" alt="Prediction Image" class="img-responsive">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- jQuery, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
